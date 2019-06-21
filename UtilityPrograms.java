@@ -171,3 +171,87 @@ public class ImmutableObject
          System.out.println(reverse_string);
      }
  }
+/*
+(1)  Check whether two Strings are anagrams or not ?
+anagrams : If Two Strings have same and identical characters then both String are
+said to be anagrams.
+
+ex: -Listen, Silent (ignore the case of the letters)
+    - state, taste
+*/
+import java.util.*;
+
+class UtilityPrograms
+{
+    // checking if two Strings are anagrams or not ?
+    static boolean areAnagrams(String s1,String s2)
+    {
+        if(s1.length()!=s2.length())
+        {
+            return false;
+        }
+        else
+        {
+            char [] ch1=s1.toCharArray();
+            char [] ch2=s2.toCharArray();
+            Arrays.sort(ch1);
+            Arrays.sort(ch2);
+            String str1=new String(ch1);
+            String str2=new String(ch2);
+            
+            if(str1.equalsIgnoreCase(str2))
+            {
+                return true;   
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+    
+    
+    // to get all prime numbers upto a given range using arrayList.
+    static ArrayList getTotalPrimeNumbers(int range)
+    {
+        ArrayList<Integer> PrimeNos=new ArrayList<Integer>();
+        for(int i=1;i<=range;i++)
+        {
+            int total_divisors=0;
+            for(int j=i;j>=1;j--)
+            {
+                if(i%j==0)
+                {
+                   total_divisors++; 
+                }
+            }
+            if(total_divisors==2)
+            {
+                PrimeNos.add(i);
+            }
+        }
+         return PrimeNos;
+    }
+    public static void main(String [] args)
+    {
+        boolean b;
+        int range;
+        
+        try(Scanner scan=new Scanner(System.in))
+        {
+            String s1=scan.nextLine();
+            String s2=scan.nextLine();
+            range=scan.nextInt();
+            b=UtilityPrograms.areAnagrams(s1,s2);
+            if(b==true)
+            {
+                System.out.println("Both Strings are anagrams");
+            }
+            else
+            {
+                System.out.println("Both Strings are not anagrams");
+            }
+        }
+        System.out.println(UtilityPrograms.getTotalPrimeNumbers(range));
+    }
+}
