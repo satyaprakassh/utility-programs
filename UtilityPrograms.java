@@ -255,3 +255,127 @@ class UtilityPrograms
         System.out.println(UtilityPrograms.getTotalPrimeNumbers(range));
     }
 }
+import java.util.*;
+class UtilityPrograms
+{
+    // get all duplicate elements of a String using.
+    static ArrayList getDuplicatesCharacters(String s)
+    {
+        ArrayList ar=new ArrayList();
+        char [] ch=s.toCharArray();
+        
+        for(int i=0;i<=ch.length-1;i++)
+        {
+            for(int j=ch.length-1;j>=0;j--)
+            {
+                if(i!=j)
+                {
+                    if(ch[i]==ch[j])
+                    {
+                        ar.add(ch[j]);
+                        break;
+                    }
+                }
+            }
+        }
+        return ar;
+    }
+    //checking if the given String is palindrome or not.
+    static boolean isTheStringPalindrome(String s)
+    {
+        StringBuffer sb=new StringBuffer(s);
+        sb.reverse();
+        String s1=sb.toString();
+        System.out.println(s1);
+        //String reverse_s=s.reverse();
+        if(s1.equals(s))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    // checking if a given number is armstrong or not.
+    static boolean isArmstrong(int n)
+    {
+        int Qube_sum=0;
+        int m=n;
+        int remainder;
+         while(n!=0)
+         {
+            remainder=n%10;
+            Qube_sum=Qube_sum+(remainder*remainder*remainder);
+            n=n/10;
+         }
+         if(Qube_sum==m)
+         {
+             return true;
+         }
+         else
+         {
+             return false;
+         }
+    }
+   // print all the armstrong numbers upto a given range.
+    static ArrayList getAllArmstrongNumbers(int range)
+    {
+        ArrayList ar=new ArrayList();
+        int Qube_sum=0;
+        int remainder;
+        int d=1;
+        int n;
+        for(int i=1;i<=range;i++)
+        {
+            n=i;
+            while(n!=0)
+            {
+                remainder=n%10;
+                Qube_sum=Qube_sum+(remainder*remainder*remainder);
+                n=n/10;
+            }
+            if(Qube_sum==i)
+            {
+                ar.add(i);
+            }
+            Qube_sum=0;
+            d++;
+        }
+         return ar;
+    }
+    // print the palindrome 
+    static boolean getPalindromNumber(int number)
+    {
+        int reverse=0;
+        int remainder=0;
+        int n=number;
+        while(number!=0)
+        {
+            remainder=number%10;
+            reverse=reverse*10 + remainder;
+            number=number/10;
+        }
+       if (reverse==n)
+       {
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+        
+    }
+    public static void main (String []args)
+    {
+        System.out.println(UtilityPrograms.getPalindromNumber(41014));
+        System.out.println();
+        System.out.println(UtilityPrograms.getAllArmstrongNumbers(4000));
+        System.out.println();
+        System.out.println(UtilityPrograms.isArmstrong(8));
+        System.out.println();
+        System.out.println(UtilityPrograms.isTheStringPalindrome("sadds"));
+        System.out.println();
+        System.out.println(UtilityPrograms.getDuplicatesCharacters("rrtonecoarg"));
+    }
+}
