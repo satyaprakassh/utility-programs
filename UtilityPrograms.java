@@ -379,3 +379,111 @@ class UtilityPrograms
         System.out.println(UtilityPrograms.getDuplicatesCharacters("rrtonecoarg"));
     }
 }
+import java.util.*;
+public class HashMapDemo
+{
+    public static void main (String[] args)
+    {
+        HashMap hm=new HashMap();
+        // values can be dulicated but duplicate keys are not allowed.
+        hm.put("c",101);
+        hm.put("a",100);
+        hm.put("z",101);
+        hm.put("k",140);
+        hm.put("p",150);
+        hm.put("l",120);
+        hm.put("t",130);
+        hm.put("r",1140);
+        System.out.println(hm);
+        //if we put a duplicate key then then that key willn't be added but the value associated with 
+        //the old previous key will be changed.
+        hm.put("p",200);
+        System.out.println(hm);
+        Set s=hm.keySet();
+        System.out.println(s);
+        Collection c=hm.values();
+        System.out.println(c);
+        Set s2=hm.entrySet();
+        System.out.println(s2);
+        Iterator i=s2.iterator();
+        while(i.hasNext())
+        {
+            Map.Entry e=(Map.Entry)i.next();
+            System.out.println(e.getKey()+"---"+e.getValue());
+            if(e.getKey().equals("l"))
+            {
+                e.setValue("sssss");
+            }
+        }
+        System.out.println(hm);
+    }
+}
+import java.util.*;
+class IdentityHashMap
+{
+    public static void main (String[] args)
+    {
+        /*
+        unlike HashMap , IdentityHashMap compares duplicate keys by using "==* operator i.e. if two obects
+        are are different then those objects are elligible to be inserted into IdentityHashMap.*/
+        Integer i1=new Integer(10);
+        Integer i2=new Integer(20);
+        Integer i3=new Integer(30);
+        Integer i4=new Integer(30);
+        Integer i5=new Integer(10);
+        Integer i6=i2;
+        Integer i7=i4;
+        HashMap hm=new HashMap();
+        hm.put(i1,"aaa");
+        hm.put(i2,"bbb");
+        hm.put(i3,"ccc");
+        hm.put(i4,"ttt");
+        hm.put(i5,"aaa");
+        hm.put(i6,"ppp");
+        hm.put(i7,"qqq");
+        System.out.println(hm);
+    }
+}
+import java.util.*;
+class Test
+{
+    public String toString()
+    {
+        return "Test";
+    }
+    public void finalize()
+    {
+        System.out.println("finalize method is called");
+    }
+}
+public class WeakHashMapDemo
+{
+    public static void main (String[] args)
+    {
+        /*
+        WeakHashMap is almost same as HashMap but there is a small didfderence
+        
+        In case of HashMap, if any object doesn't have any reference , then it isn't elligible for 
+        garbage collection if that object is associated with HashMap.
+        
+        But in case of WeakHashMap, if any object doesn't have refernce variable then that object will
+        be elligible for garbage collection eventhough that object is associated with WeakHashMap.*/
+        Test t=new Test();
+        HashMap hm=new HashMap();
+        hm.put(t,"xyz");
+        System.out.println(hm);
+        t=null// here we are reassigning the value to t so now, Test object isn't associated with refernce 
+        System.gc();
+        System.out.println(hm);
+        
+        // lets see what happens in case of WeakHashMap
+        Test t2=new Test();
+        WeakHashMap whm=new WeakHashMap();
+        whm.put(t2,"ttttt");
+        System.out.println(whm);
+        
+        t2=null;
+        System.gc();
+        System.out.println(whm);
+    }
+}
