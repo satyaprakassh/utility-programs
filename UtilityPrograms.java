@@ -487,3 +487,69 @@ public class WeakHashMapDemo
         System.out.println(whm);
     }
 }
+/*
+How to genetate random numbers ?
+
+- There are 3 ways to get a random Number
+                        (1) by using Random class.
+                        - In this method we have to create the object of Random class which is available
+                        inside java.util package.
+                        - Then we have to call nextInt(int u) method through that object and this method
+                        takes a parameter which is the upper limit of the Numbers i.e if we pass 10 as
+                        argument then that method will return any number between 0 to 9 both inclusive
+                        but we can't expect the exact output.
+                        
+                        (2) By using Math class.
+                        -In this method we have to call random() method which is static type . This method
+                        returns double value between 0.0 to 1.0. In this method we don't require to pass
+                        any upper limit.
+                        
+                        (3) By using ThreadLocalRandom class.
+                        - In this method we can get random numbers(int and double type) and random boolean values
+                        - We can achieve these by using current() method which is static type.
+
+*/import java.util.*;
+class UtilityPrograms
+{
+    //to generate random Number
+    public static int getRandomNumberUsingRandomClass(int upper_limit)
+    {
+        Random r=new Random();
+        int random_number=r.nextInt(upper_limit);
+        return random_number;
+    }
+    //to genetate random double values.
+    public static double getRandomNumberUsingMathClass()
+    {
+        double random_number=Math.random();
+        return random_number;
+    }
+    //to generate random Numbes as int type , double type and to generate random boolean values.
+    public static void getRandomValueUsingThreadLocalRandomClass()
+    {
+        int val1=java.util.concurrent.ThreadLocalRandom.current().nextInt();
+        double val2=java.util.concurrent.ThreadLocalRandom.current().nextDouble();
+        boolean val3=java.util.concurrent.ThreadLocalRandom.current().nextBoolean();
+        System.out.println(val1+"---"+val2+"---"+val3);
+    }
+    public static void main (String[] args)
+    {
+        System.out.println(UtilityPrograms.getRandomNumberUsingRandomClass(1000));
+        System.out.println(UtilityPrograms.getRandomNumberUsingMathClass());
+        UtilityPrograms.getRandomValueUsingThreadLocalRandomClass();
+        
+        
+        //logic for fibonacci series
+        int x=0;
+        int y=1;
+        int val=0;
+       /* for (int i=0;i<=15;i++)
+        {
+            val=x+y;
+           //System.out.print(val+" ");
+            x=y;
+            y=val;
+            
+        }*/
+    }
+}
